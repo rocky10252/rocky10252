@@ -1,0 +1,33 @@
+class Workflow:
+    def __init__(self):
+        self.tasks = []
+
+    def add_task(self, task):
+        self.tasks.append(task)
+
+    def run(self, data):
+        for task in self.tasks:
+            data = task(data)
+        return data
+
+# Define some tasks
+def task_1(data):
+    print("Task 1: Processing data...")
+    return data + " -> Task 1 done"
+
+def task_2(data):
+    print("Task 2: Transforming data...")
+    return data + " -> Task 2 done"
+
+def task_3(data):
+    print("Task 3: Finalizing...")
+    return data + " -> Task 3 done"
+
+# Create and run the workflow
+workflow = Workflow()
+workflow.add_task(task_1)
+workflow.add_task(task_2)
+workflow.add_task(task_3)
+
+result = workflow.run("Start")
+print("\nFinal Output:", result)
